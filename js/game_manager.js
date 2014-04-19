@@ -69,6 +69,7 @@ GameManager.prototype.addStartTiles = function () {
   for (var i = 0; i < this.startTiles; i++) {
     this.addRandomTile();
   }
+  this.addDisruptTile();
 };
 
 // Adds a tile in a random position
@@ -80,6 +81,14 @@ GameManager.prototype.addRandomTile = function () {
     this.grid.insertTile(tile);
   }
 };
+
+// Adds a tile of value one
+GameManager.prototype.addDisruptTile = function() {
+  if (this.grid.cellsAvailable()) {
+    var tile = new Tile(this.grid.randomAvailableCell(), 1);
+    this.grid.insertTile(tile);
+  }
+}
 
 // Sends the updated grid to the actuator
 GameManager.prototype.actuate = function () {
